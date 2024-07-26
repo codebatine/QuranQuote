@@ -1,29 +1,5 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import styled from 'styled-components';
-
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: calc(100vh - 60px);
-  padding: 2rem;
-  padding-top: 80px;
-`;
-
-const SurahContainer = styled.div`
-  margin: 1rem 0;
-`;
-
-const SurahTitle = styled.h2`
-  text-align: center;
-  margin-bottom: 1rem;
-`;
-
-const AyahText = styled.p`
-  margin: 0.5rem 0;
-`;
 
 const ReadQuran = () => {
   const [surahs, setSurahs] = useState([]);
@@ -54,28 +30,30 @@ const ReadQuran = () => {
   };
 
   return (
-    <Container>
+    <div className="container">
       <h1>Read the Quran in English</h1>
       {currentSurah ? (
-        <SurahContainer>
-          <SurahTitle>Surah {currentSurah.englishName} ({currentSurah.name})</SurahTitle>
+        <div className="surah-container">
+          <h2 className="surah-title">Surah {currentSurah.englishName} ({currentSurah.name})</h2>
           {ayahs.map((ayah) => (
-            <AyahText key={ayah.number}>
-              <strong>{ayah.numberInSurah}.</strong> {ayah.text}
-            </AyahText>
+            <div className="translation-text" key={ayah.number}>
+              <p className="ayah-text">
+                <strong>{ayah.numberInSurah}.</strong> {ayah.text}
+              </p>
+            </div>
           ))}
-          <button onClick={() => setCurrentSurah(null)}>Back to Surahs</button>
-        </SurahContainer>
+          <button className="action-button" onClick={() => setCurrentSurah(null)}>Back to Surahs</button>
+        </div>
       ) : (
-        <div>
+        <div className="buttons-container">
           {surahs.map((surah) => (
-            <button key={surah.number} onClick={() => fetchAyahs(surah.number)}>
+            <button className="surah-button" key={surah.number} onClick={() => fetchAyahs(surah.number)}>
               {surah.englishName}
             </button>
           ))}
         </div>
       )}
-    </Container>
+    </div>
   );
 };
 

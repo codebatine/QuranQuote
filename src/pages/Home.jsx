@@ -31,6 +31,16 @@ const Container = styled.div`
   padding-top: 80px;
 `;
 
+const TranslationText = styled.p`
+  font-size: 1rem;
+  margin: 1rem 0;
+  padding: 1rem;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  width: 100%;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+`;
+
 const Home = () => {
   const [quote, setQuote] = useState('');
   const [translation, setTranslation] = useState('');
@@ -59,8 +69,10 @@ const Home = () => {
 
   return (
     <Container>
+      <div className='container'>
       <QuoteCard quote={quote} fetchQuote={fetchRandomQuote} />
-      <div>{translation && <p><strong>English Translation:</strong> {translation}</p>}</div>
+      {translation && <TranslationText><strong>English Translation:</strong> {translation}</TranslationText>}
+      </div>
     </Container>
   );
 };
