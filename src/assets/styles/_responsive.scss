@@ -1,0 +1,21 @@
+@media (max-width: 768px) {
+  .container {
+    padding: 1.5rem;
+  }
+
+  .surah-button,
+  .action-button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 1rem;
+  }
+
+  nav a {
+    margin: 0 0.5rem;
+    font-size: 1rem;
+  }
+}
