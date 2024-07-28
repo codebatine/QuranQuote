@@ -10,6 +10,21 @@ const ReadQuran = () => {
     fetchSurahs();
   }, []);
 
+  useEffect(() => {
+    const handleBackButton = (event) => {
+      if (currentSurah) {
+        event.preventDefault();
+        setCurrentSurah(null);
+      }
+    };
+
+    window.addEventListener('popstate', handleBackButton);
+
+    return () => {
+      window.removeEventListener('popstate', handleBackButton);
+    };
+  }, [currentSurah]);
+
   const fetchSurahs = async () => {
     try {
       const response = await axios.get('https://api.alquran.cloud/v1/surah');
@@ -24,6 +39,7 @@ const ReadQuran = () => {
       const response = await axios.get(`https://api.alquran.cloud/v1/surah/${surahNumber}/en.ahmedali`);
       setAyahs(response.data.data.ayahs);
       setCurrentSurah(response.data.data);
+      window.history.pushState(null, null, `#surah-${surahNumber}`);
     } catch (error) {
       console.error('Error fetching ayahs', error);
     }
