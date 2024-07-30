@@ -68,12 +68,14 @@ const Home = () => {
   }, []);
 
   return (
+    <>
     <Container>
       <div className='container'>
       <QuoteCard quote={quote} fetchQuote={fetchRandomQuote} />
       {translation && <TranslationText><strong>English Translation:</strong> {translation}</TranslationText>}
       </div>
     </Container>
+    </>
   );
 };
 
