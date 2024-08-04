@@ -89,7 +89,7 @@ const ReadQuran = () => {
           <h2 className="surah-title">Surah {currentSurah.englishName} ({currentSurah.name})</h2>
           {ayahs.map((ayah) => (
             <div className="translation-text" key={ayah.number}>
-              <p className="ayah-text">
+              <p className="ayah-text arabic-text">
                 <strong>{ayah.numberInSurah}.</strong> {ayah.text}
               </p>
             </div>
