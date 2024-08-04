@@ -75,7 +75,7 @@ const ReadQuran = () => {
       <Search onSearchChange={handleSearchChange} />
       {searchResults.length > 0 ? (
         <div className="search-results">
-          <h2>Search Results</h2>
+          <h2>Search Results ({searchResults.length} found)</h2>
           {searchResults.map((result) => (
             <div key={result.number} className="translation-text">
               <p className="ayah-text">
