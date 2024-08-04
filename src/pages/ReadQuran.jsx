@@ -1,10 +1,14 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import Navbar from '../components/Navbar';
+import Search from '../components/Search';
 
 const ReadQuran = () => {
   const [surahs, setSurahs] = useState([]);
   const [currentSurah, setCurrentSurah] = useState(null);
   const [ayahs, setAyahs] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [searchResults, setSearchResults] = useState([]);
 
   useEffect(() => {
     fetchSurahs();
@@ -45,10 +49,42 @@ const ReadQuran = () => {
     }
   };
 
+  const handleSearchChange = (term) => {
+    setSearchTerm(term);
+    if (term.trim() === '') {
+      setSearchResults([]);
+    } else {
+      handleSearch(term);
+    }
+  };
+
+  const handleSearch = async (term) => {
+    try {
+      const response = await axios.get(`https://api.alquran.cloud/v1/search/${term}/all/en.ahmedali`);
+      setSearchResults(response.data.data.matches || []);
+    } catch (error) {
+      console.error('Error searching ayahs', error);
+      setSearchResults([]);
+    }
+  };
+
   return (
     <div className="container">
+      <Navbar />
       <h1>Read the Quran in English</h1>
-      {currentSurah ? (
+      <Search onSearchChange={handleSearchChange} />
+      {searchResults.length > 0 ? (
+        <div className="search-results">
+          <h2>Search Results</h2>
+          {searchResults.map((result) => (
+            <div key={result.number} className="translation-text">
+              <p className="ayah-text">
+                <strong>{result.surah.number}:{result.numberInSurah}.</strong> {highlightText(result.text, searchTerm)}
+              </p>
+            </div>
+          ))}
+        </div>
+      ) : currentSurah ? (
         <div className="surah-container">
           <h2 className="surah-title">Surah {currentSurah.englishName} ({currentSurah.name})</h2>
           {ayahs.map((ayah) => (
@@ -70,6 +106,17 @@ const ReadQuran = () => {
         </div>
       )}
     </div>
+  );
+};
+
+const highlightText = (text, term) => {
+  const parts = text.split(new RegExp(`(${term})`, 'gi'));
+  return (
+    <span>
+      {parts.map((part, index) => 
+        part.toLowerCase() === term.toLowerCase() ? <span key={index} style={{ backgroundColor: 'yellow' }}>{part}</span> : part
+      )}
+    </span>
   );
 };
 
