@@ -7,6 +7,8 @@
   max-width: 600px;
   text-align: center;
   width: 100%;
+  height: auto;
+  font-size: 1.5rem;
 }
 
 .button,
@@ -35,6 +37,16 @@
   padding: 0.5rem;
   width: 100%;
   max-width: 600px;
-  border: 1 px solid #dcdcdc;
+  border: 1px solid #dcdcdc;
   border-radius: 5px;
+}
+
+.translation-text {
+  font-size: 1.2rem;
+  margin: 1rem 0;
+  padding: 1rem;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  width: 100%;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }

@@ -7,12 +7,16 @@ import ReadQuran from './pages/ReadQuran';
 const App = () => {
   return (
     <Router>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/readquran" element={<ReadQuran />} />
-      </Routes>
-      <Footer />
+      <div id="root">
+        <Navbar />
+        <main>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/readquran" element={<ReadQuran />} />
+          </Routes>
+        </main>
+        <Footer />
+      </div>
     </Router>
   );
 };

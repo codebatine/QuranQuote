@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import styled from 'styled-components';
 import QuoteCard from '../components/QuoteCard';
 
 const surahAyahCounts = {
@@ -20,26 +19,6 @@ const surahAyahCounts = {
   106: 4, 107: 7, 108: 3, 109: 6, 110: 3, 111: 5, 112: 4, 113: 5,
   114: 6
 };
-
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: calc(100vh - 60px);
-  padding: 2rem;
-  padding-top: 80px;
-`;
-
-const TranslationText = styled.p`
-  font-size: 1rem;
-  margin: 1rem 0;
-  padding: 1rem;
-  background-color: #f8f9fa;
-  border-radius: 8px;
-  width: 100%;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-`;
 
 const Home = () => {
   const [quote, setQuote] = useState('');
@@ -68,14 +47,10 @@ const Home = () => {
   }, []);
 
   return (
-    <>
-    <Container>
-      <div className='container'>
+    <div className="container">
       <QuoteCard quote={quote} fetchQuote={fetchRandomQuote} />
-      {translation && <TranslationText><strong>English Translation:</strong> {translation}</TranslationText>}
-      </div>
-    </Container>
-    </>
+      {translation && <p className="translation-text"><strong>English Translation:</strong> {translation}</p>}
+    </div>
   );
 };
 
