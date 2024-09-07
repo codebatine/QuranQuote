@@ -19,6 +19,8 @@ const ReadQuran = () => {
       if (currentSurah) {
         event.preventDefault();
         setCurrentSurah(null);
+        setSearchResults([]);
+        window.history.pushState(null, null, '/read-quran'); // Reset URL to the main page
       }
     };
 
@@ -68,6 +70,12 @@ const ReadQuran = () => {
     }
   };
 
+  const handleBackToSurahs = () => {
+    setCurrentSurah(null);
+    setSearchResults([]);
+    window.history.pushState(null, null, '/read-quran'); // Reset URL to the main page
+  };
+
   return (
     <div className="container">
       <Navbar />
@@ -83,6 +91,7 @@ const ReadQuran = () => {
               </p>
             </div>
           ))}
+          <button className="action-button" onClick={handleBackToSurahs}>Back to Surahs</button>
         </div>
       ) : currentSurah ? (
         <div className="surah-container">
@@ -94,7 +103,7 @@ const ReadQuran = () => {
               </p>
             </div>
           ))}
-          <button className="action-button" onClick={() => setCurrentSurah(null)}>Back to Surahs</button>
+          <button className="action-button" onClick={handleBackToSurahs}>Back to Surahs</button>
         </div>
       ) : (
         <div className="buttons-container">
