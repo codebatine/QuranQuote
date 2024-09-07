@@ -99,8 +99,12 @@ const ReadQuran = () => {
       ) : (
         <div className="buttons-container">
           {surahs.map((surah) => (
-            <button className="surah-button" key={surah.number} onClick={() => fetchAyahs(surah.number)}>
-              {surah.englishName}
+            <button
+              className="surah-button"
+              key={surah.number}
+              onClick={() => fetchAyahs(surah.number)}
+            >
+              <span className="surah-number">{surah.number}</span> {surah.englishName}
             </button>
           ))}
         </div>

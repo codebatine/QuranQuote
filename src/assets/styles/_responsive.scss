@@ -8,6 +8,20 @@
   .container {
     padding: 2rem;
   }
+
+  .buttons-container {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 1rem;
+  }
+
+  .surah-button {
+    font-size: 1.1rem;
+    padding: 0.75rem;
+  }
+
+  .surah-number {
+    font-size: 1.3rem;
+  }
 }
 
 @media (max-width: 700px) {
