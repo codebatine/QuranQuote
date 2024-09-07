@@ -2,9 +2,11 @@ import PropTypes from 'prop-types';
 
 const QuoteCard = ({ quote, fetchQuote }) => {
   return (
-    <div className="card">
-      <p>{quote}</p>
-      <button className="button" onClick={fetchQuote}>Get Random Ayah</button>
+    <div className="quote-card">
+      <blockquote>{quote}</blockquote>
+      <button className="quote-button" onClick={fetchQuote}>
+        Get Random Ayah
+      </button>
     </div>
   );
 };
